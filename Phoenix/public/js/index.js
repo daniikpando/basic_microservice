@@ -29,7 +29,7 @@ function getUsers(ctx) {
         credential: "omit"
     };
 
-    let url = "http://127.0.0.1:8080/api/users";
+    let url = "http://user.local/api/users";
 
     fetch(url, sentData)
       .then( (res) => res.json())
@@ -112,7 +112,7 @@ function newUser(ctx) {
         }
 
 
-        let url = "http://127.0.0.1:8080/api/users"
+        let url = "http://user.local/api/users"
 
         fetch(url, {
             method: "post",
