@@ -1,17 +1,20 @@
 var container = document.getElementById("main");
 
+// initRoutes se encarga de crear el enrutamiento en el lado del Front-end
 function initRoutes() {
     page("/",initPage);
     page("/users", getUsers);
     page("/users/new", newUser);
 }
 
+// GET / -> Es la raiz del sitio web
 function initPage() {
     container.innerHTML = `
         <h1>Bienvenido a la aplicación de gestión de usuarios</h1>
     `
 }
 
+// GET /users -> Se encarga de mostrar todos los usuarios
 function getUsers(ctx) {
 
     let header = new Headers({
@@ -33,6 +36,7 @@ function getUsers(ctx) {
       .then( (res) => showContent(res.content) )
 }
 
+// Se encarga de mostrar todos los usuarios en el HTML
 function showContent(content) {
     container.innerHTML = "<h1> Todos los usuarios registrados</h1>"
 
@@ -46,9 +50,8 @@ function showContent(content) {
     })
 }
 
+// GET /users/new -> Se encarga de mostrar el formulario para registrar usuarios
 function newUser(ctx) {
-
-
     container.innerHTML = `
         <h1>Crear usuario</h1>
         <form> 
