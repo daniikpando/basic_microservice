@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo</title>
+    <script src="/js/page.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/users">Usuarios</a>
+            <a href="/users/new">Crear usuarios</a>
+        </nav>
+        <div>
+            <p id="message"></p>
+        </div>
+        <div id="main">
+
+        </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+    <script>
+        window.onload = function () {
+            initRoutes();
+            page();
+        }
+    </script>
+</body>
+</html>

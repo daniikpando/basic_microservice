@@ -1,0 +1,39 @@
+version: "3"
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    container_name: prueba-nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - "80:80"
+
+  usermicroservice:
+    build: ./UserMicroservice
+    image: prueba/usermicroservice
+    container_name: usermicroservice
+    depends_on:
+      - db
+      - proxy
+    links:
+      - db
+    environment:
+      VIRTUAL_HOST: user.local
+
+  phoenix:
+    build: ./Phoenix
+    image: prueba/phoenix
+    container_name: phoenix
+    depends_on:
+      - usermicroservice
+      - proxy
+    links:
+      - usermicroservice
+    environment:
+      VIRTUAL_HOST: phoenix.local
+
+  db:
+    image: postgres:9.6
+    container_name: postgres96
+    ports:
+      - "5432:5432"
