@@ -14,6 +14,7 @@ var (
 	db      *gorm.DB
 )
 
+// GetConnection se encarga de abrir la conexión a la base de datos POSTGRES manejando el patrón singleton y generando un pool de conexiones
 func GetConnection() *gorm.DB {
 	connect.Do(func() {
 		var err error

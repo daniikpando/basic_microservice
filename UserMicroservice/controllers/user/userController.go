@@ -12,6 +12,8 @@ import (
 	"github.com/daniel/PruebaBackend/UserMicroservice/connections"
 )
 
+
+// Index es el controlador que se encarga de enviar mediante formato JSON todos los registros de la tabla users
 func Index(context echo.Context) error{
 	users := make([]models.User, 0)
 	db := connections.GetConnection()
@@ -39,6 +41,7 @@ func Index(context echo.Context) error{
 	)
 }
 
+// Create es el controlador que se encarga de crear un registro en la tabla users
 func Create(context echo.Context) error{
 	user := new(models.User)
 	db := connections.GetConnection()
@@ -63,10 +66,12 @@ func Create(context echo.Context) error{
 		)
 	}
 
+	// Encriptar contraseña
 	hash := sha256.Sum256([]byte(user.Password))
 	pwd := fmt.Sprintf("%x", hash )
 	user.Password = pwd
 
+	// Crear registro
 	err := db.Create(&user).Error
 
 	if err != nil {

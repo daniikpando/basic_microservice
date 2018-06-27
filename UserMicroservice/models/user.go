@@ -2,6 +2,8 @@ package models
 
 import "github.com/jinzhu/gorm"
 
+
+// User es el modelo de copia de datos de la tabla Users en la base de datos
 type User struct {
 	gorm.Model
 	Nombre    string `json:"nombre" gorm:"not null"`
